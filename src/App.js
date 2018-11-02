@@ -4,6 +4,18 @@ import './App.css'
 
 class App extends Component {
 
+  state = {
+    beer: []
+  }
+
+  async componentDidMount(){
+    fetch('https://cryptic-depths-21692.herokuapp.com/beers')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({beer: data.beers})
+      })
+  } 
+
   render() {
     return (
       <div className="App">
