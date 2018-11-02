@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import logo from './beer.png'
 import './App.css'
 import Cooler from './components/Cooler'
+import NavBar from './components/Nav'
 class App extends Component {
 
   state = {
@@ -21,29 +21,20 @@ class App extends Component {
     this.setState({reviewList: this.state.reviewList.concat(e.target.key) })
   }
 
-
-
-
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-
+      <NavBar />
+        {/* <header className="App-header">
+          <button>Add A Beer</button>
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to Beer</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        </header> */}
         <div className='counter_area'>
         <div className="counter_area">
-          <div className="counter_box">   </div>
         </div>
-        <Cooler beer={this.state.beer}
-                reviewList={this.state.reviewList}
-                reviewSetter={this.state.reviewSetter} />
+        <Cooler beer={this.state.beer} />
         </div>
-        <button onClick={()=> console.log('i work')}> bump </button>
       </div>
     );
   }
