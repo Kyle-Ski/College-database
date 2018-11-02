@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
+import logo from './beer.png'
 import './App.css'
 import Cooler from './components/Cooler'
 class App extends Component {
 
   state = {
-    beer: []
+    beer: [],
+    reviewList: []
   }
 
   async componentDidMount(){
@@ -16,13 +17,20 @@ class App extends Component {
       })
   } 
 
+  reviewSetter = (e) => {
+    this.setState({reviewList: this.state.reviewList.concat(e.target.key) })
+  }
+
+
+
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
 
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to Beer</h1>
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
@@ -31,7 +39,9 @@ class App extends Component {
         <div className="counter_area">
           <div className="counter_box">   </div>
         </div>
-        <Cooler beer={this.state.beer} />
+        <Cooler beer={this.state.beer}
+                reviewList={this.state.reviewList}
+                reviewSetter={this.state.reviewSetter} />
         </div>
         <button onClick={()=> console.log('i work')}> bump </button>
       </div>
