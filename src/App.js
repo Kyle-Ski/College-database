@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
-
+import Cooler from './components/Cooler'
 class App extends Component {
 
   state = {
@@ -31,7 +31,7 @@ class App extends Component {
         <div className="counter_area">
           <div className="counter_box">   </div>
         </div>
-
+        <Cooler beer={this.state.beer} />
         </div>
         <button onClick={()=> console.log('i work')}> bump </button>
       </div>
