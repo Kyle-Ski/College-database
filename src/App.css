@@ -32,6 +32,6 @@
   }
 }
 
-.hidden {
-  visibility: hidden;
+.container {
+  box-shadow: #282c34;
 }
