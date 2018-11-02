@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Cooler from './components/Cooler'
-import NavBar from './components/Nav'
+import logo from './beer.png'
 class App extends Component {
 
   state = {
@@ -24,12 +24,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <NavBar />
-        {/* <header className="App-header">
+        <header className="App-header">
           <button>Add A Beer</button>
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to Beer</h1>
-        </header> */}
+        </header>
         <div className='counter_area'>
         <div className="counter_area">
         </div>
