@@ -32,6 +32,8 @@
   }
 }
 
-.container {
-  box-shadow: #282c34;
+.cooler {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
 }
