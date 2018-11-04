@@ -29,7 +29,7 @@ class Beer extends Component {
         <Card fluid color='blue' style={style.card}>
         <Card.Content>
             <Card.Header>{this.props.beer.name}</Card.Header>
-            <Image size='large' src={this.props.beer.imageUrl}/>
+            <Image size='large' src={this.props.beer.imageUrl} rounded/>
         <Card.Content extra>
             <div>
             <Button style ={style.button} onClick={this.showThatReview} basic size='mini' color='blue'>Show Review</Button>
