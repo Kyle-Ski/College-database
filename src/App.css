@@ -29,5 +29,5 @@
 .cooler {
   display: flex;
   flex-direction: column;
-  justify-items: center;
-}
+  margin: 10%;
+} 
