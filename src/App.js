@@ -20,13 +20,15 @@ class App extends Component {
 
   state = {
     beer: [],
+    list: [],
     reviewList: [],
     showForm: false,
     showDelete: false,
     beerName: '',
     beerImg: '',
     beerAbv: 0,
-    beerReview: ''
+    beerReview: '',
+    itemToDelete: 0
   }
 
   async componentDidMount(){
@@ -54,19 +56,36 @@ class App extends Component {
       body: JSON.stringify(data)
     })
       .then(response => response.json())
-      .then(newBeer => this.setState({beer: [...this.state.beer, newBeer.beer]}))
+      .then(newBeer => this.setState({beer: [...this.state.beer, newBeer.beer], showForm: !this.state.showForm}))
     console.log('submit button')
   }
+  
+  selectBeerId = (e) => {
+    let beerId = this.state.beer.filter(list => list.name === e.target.innerText)[0].id
+    this.setState({itemToDelete: beerId})
+  } 
 
-  deleteBeer = async (e, id) => {
+  deleteBeer = async (e) => {
     e.preventDefault()
-    fetch(`http://localhost:3000/beers/${id}`, {
-      method: 'DELETE',
-      mode: 'cors'
+    console.log('other function', this.state.itemToDelete)
+    fetch(`http://localhost:3000/beers/${this.state.itemToDelete}`, {
+        method: 'DELETE',
+        mode: 'cors'
     })
-      .then(response => response.json())
-      .then(data => console.log(data))
+        .then(response => response.json())
+        .then(this.deleteHandler)
   }
+
+  deleteHandler = (data) => {
+    let newBeer = this.state.beer.filter(item => item.id != data.deletedBeer.id)
+    this.setState({beer: newBeer})
+    this.showDeleteForm()
+  }
+
+  showDeleteForm = () => {
+    this.setState({showDelete: !this.state.showDelete})
+  }
+  
 
   getName = (e) => {
     this.setState({beerName: e.target.value})
@@ -81,7 +100,20 @@ class App extends Component {
     this.setState({beerReview: e.target.value})
   }
 
+  structureDropdown = () => {
+    let list = this.state.beer.map(beer => {
+      return(
+        {
+          text: beer.name,
+          value: beer.id
+        }
+      )
+    })
+    this.setState({list: list})
+  }
+
   render() {
+  
     return (
       <div className="App">
         <header className="App-header">
@@ -92,13 +124,19 @@ class App extends Component {
         <Menu.Item name='add' onClick={()=> this.setState({showForm: !this.state.showForm})}>
           Add Beer
         </Menu.Item>
-        <Menu.Item name='delete' onClick={() => this.setState({showDelete: !this.state.showDelete})}>
+        <Menu.Item name='delete' onClick={this.showDeleteForm}>
         Delete a Beer
         </Menu.Item>
           </Menu>
         </header>
         {this.state.showForm ? <AddBeer getName={this.getName} getAbv={this.getAbv} getImg={this.getImg} getReview={this.getReview} submitForm={this.submitForm}/> : ''}
-        {this.state.showDelete ? <DeleteBeer beers={this.state.beer} deleteBeer={this.deleteBeer} />: ''}
+        {this.state.showDelete ? <DeleteBeer 
+            beers={this.state.beer}  
+            selectBeerId={this.selectBeerId}
+            deleteBeer={this.deleteBeer} 
+            list={this.state.list}
+            />:
+            ''}
         <div className='counter_area'>
         <div className="counter_area">
         </div>
@@ -108,7 +146,7 @@ class App extends Component {
           style={style.h3}
         />
         <div className='cooler'>
-          <Cooler  beer={this.state.beer} />
+          <Cooler beer={this.state.beer} />
           </div>
         </div>
       </div>
