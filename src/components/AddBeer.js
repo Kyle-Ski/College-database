@@ -1,5 +1,5 @@
 import {Button, Form, Segment} from 'semantic-ui-react'
-import React, { Component } from 'react'
+import React from 'react'
 
 const AddBeer = ({getName, getAbv, getImg, getReview, submitForm}) => {
 

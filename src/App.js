@@ -77,7 +77,7 @@ class App extends Component {
   }
 
   deleteHandler = (data) => {
-    let newBeer = this.state.beer.filter(item => item.id != data.deletedBeer.id)
+    let newBeer = this.state.beer.filter(item => item.id !== data.deletedBeer.id)
     this.setState({beer: newBeer})
     this.showDeleteForm()
   }
