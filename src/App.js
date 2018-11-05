@@ -52,6 +52,7 @@ class App extends Component {
       body: JSON.stringify(data)
     })
       .then(response => response.json())
+      .then(newBeer => this.setState({beer: [...this.state.beer, newBeer.beer]}))
     console.log('submit button')
   }
 
