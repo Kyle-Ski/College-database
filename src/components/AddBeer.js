@@ -1,6 +1,7 @@
 import {Button, Form, Segment} from 'semantic-ui-react'
 import React from 'react'
 
+
 const AddBeer = ({getName, getAbv, getImg, getReview, submitForm}) => {
 
     return(
@@ -15,7 +16,7 @@ const AddBeer = ({getName, getAbv, getImg, getReview, submitForm}) => {
             <Button color='green' onClick={submitForm} type='submit'>Submit</Button>
         </Form>
         </Segment>
-    )
+    )   
     
 }
 

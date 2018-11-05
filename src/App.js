@@ -29,7 +29,6 @@ class App extends Component {
     beerAbv: 0,
     beerReview: '',
     itemToDelete: 0,
-    handleModal: false
   }
 
   async componentDidMount(){
@@ -49,7 +48,7 @@ class App extends Component {
       review: this.state.beerReview
     }
     if (!data.name || !data.imageUrl || !data.abv || !data.review){
-      this.setState({handleModal: true})
+      alert('Please fill out all fields')
     } else {
     fetch('http://localhost:3000/beers',{
       method: 'POST',
@@ -132,7 +131,14 @@ class App extends Component {
         </Menu.Item>
           </Menu>
         </header>
-        {this.state.showForm ? <AddBeer getName={this.getName} getAbv={this.getAbv} getImg={this.getImg} getReview={this.getReview} submitForm={this.submitForm}/> : ''}
+        {this.state.showForm ? <AddBeer 
+            getName={this.getName} 
+            getAbv={this.getAbv} 
+            getImg={this.getImg} 
+            getReview={this.getReview} 
+            submitForm={this.submitForm}
+            /> :
+            ''}
         {this.state.showDelete ? <DeleteBeer 
             beers={this.state.beer}  
             selectBeerId={this.selectBeerId}
