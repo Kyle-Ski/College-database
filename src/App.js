@@ -28,7 +28,8 @@ class App extends Component {
     beerImg: '',
     beerAbv: 0,
     beerReview: '',
-    itemToDelete: 0
+    itemToDelete: 0,
+    handleModal: false
   }
 
   async componentDidMount(){
@@ -47,6 +48,9 @@ class App extends Component {
       abv: this.state.beerAbv,
       review: this.state.beerReview
     }
+    if (!data.name || !data.imageUrl || !data.abv || !data.review){
+      this.setState({handleModal: true})
+    } else {
     fetch('http://localhost:3000/beers',{
       method: 'POST',
       mode: 'cors',
@@ -58,6 +62,7 @@ class App extends Component {
       .then(response => response.json())
       .then(newBeer => this.setState({beer: [...this.state.beer, newBeer.beer], showForm: !this.state.showForm}))
   }
+}
   
   selectBeerId = (e) => {
     let beerId = this.state.beer.filter(list => list.name === e.target.innerText)[0].id

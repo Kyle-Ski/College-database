@@ -7,10 +7,10 @@ const AddBeer = ({getName, getAbv, getImg, getReview, submitForm}) => {
         <Segment inverted>
         <Form inverted>
             <Form.Group widths='equal'>
-                <Form.Input onChange={getName} fluid label='Beer Name' placeholder='Beer name' />
-                <Form.Input onChange={getImg} fluid label='Image' placeholder='Image' />
-                <Form.Input onChange={getAbv} type='number' fluid label='ABV' placeholder='ABV'/>
-                <Form.Input onChange={getReview} fluid label='Review' placeholder='Write a review' />
+                <Form.Input required onChange={getName} fluid label='Beer Name' placeholder='Beer name' />
+                <Form.Input required onChange={getImg} fluid label='Image' placeholder='Image' />
+                <Form.Input required onChange={getAbv} type='number' fluid label='ABV' placeholder='ABV'/>
+                <Form.Input required onChange={getReview} fluid label='Review' placeholder='Write a review' />
             </Form.Group>
             <Button color='green' onClick={submitForm} type='submit'>Submit</Button>
         </Form>
