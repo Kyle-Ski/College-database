@@ -20,19 +20,52 @@ class App extends Component {
   state = {
     beer: [],
     reviewList: [],
-    showForm: false
+    showForm: false,
+    beerName: '',
+    beerImg: '',
+    beerAbv: 0,
+    beerReview: ''
   }
 
   async componentDidMount(){
-    fetch('https://cryptic-depths-21692.herokuapp.com/beers')
+    fetch('http://localhost:3000/beers')
       .then(response => response.json())
       .then(data => {
         this.setState({beer: data.beers})
       })
   } 
+  
+  submitForm = async (e) => {
+    e.preventDefault()
+    let data = {
+      name: this.state.beerName,
+      imageUrl: this.state.beerImg,
+      abv: this.state.beerAbv,
+      review: this.state.beerReview
+    }
+    fetch('http://localhost:3000/beers',{
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+    console.log('submit button')
+  }
 
-  reviewSetter = (e) => {
-    this.setState({reviewList: this.state.reviewList.concat(e.target.key) })
+  getName = (e) => {
+    this.setState({beerName: e.target.value})
+  }
+  getImg = (e) => {
+    this.setState({beerImg: e.target.value})
+  }
+  getAbv = (e) => {
+    this.setState({beerAbv: Number(e.target.value)})
+  }
+  getReview = (e) => {
+    this.setState({beerReview: e.target.value})
   }
 
   render() {
@@ -48,7 +81,7 @@ class App extends Component {
         </Menu.Item>
           </Menu>
         </header>
-        {this.state.showForm ? <AddBeer /> : ''}
+        {this.state.showForm ? <AddBeer getName={this.getName} getAbv={this.getAbv} getImg={this.getImg} getReview={this.getReview} submitForm={this.submitForm}/> : ''}
         <div className='counter_area'>
         <div className="counter_area">
         </div>

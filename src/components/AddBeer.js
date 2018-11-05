@@ -1,21 +1,22 @@
 import {Button, Form, Segment} from 'semantic-ui-react'
 import React, { Component } from 'react'
 
-class AddBeer extends Component {
-    render(){
-        return(
-            <Segment inverted>
-            <Form inverted>
-                <Form.Group widths='equal'>
-                    <Form.Input fluid label='First name' placeholder='First name' />
-                    <Form.Input fluid label='Last name' placeholder='Last name' />
-                </Form.Group>
-                <Form.Checkbox label='I agree to the Terms and Conditions' />
-                <Button type='submit'>Submit</Button>
-            </Form>
-            </Segment>
-        )
-    }
+const AddBeer = ({getName, getAbv, getImg, getReview, submitForm}) => {
+
+    return(
+        <Segment inverted>
+        <Form inverted>
+            <Form.Group widths='equal'>
+                <Form.Input onChange={getName} fluid label='Beer Name' placeholder='Beer name' />
+                <Form.Input onChange={getImg} fluid label='Image' placeholder='Image' />
+                <Form.Input onChange={getAbv} type='number' fluid label='ABV' placeholder='ABV'/>
+                <Form.Input onChange={getReview} fluid label='Review' placeholder='Write a review' />
+            </Form.Group>
+            <Button onClick={submitForm} type='submit'>Submit</Button>
+        </Form>
+        </Segment>
+    )
+    
 }
 
 export default AddBeer
