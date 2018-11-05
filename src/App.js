@@ -57,7 +57,6 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(newBeer => this.setState({beer: [...this.state.beer, newBeer.beer], showForm: !this.state.showForm}))
-    console.log('submit button')
   }
   
   selectBeerId = (e) => {
@@ -67,7 +66,6 @@ class App extends Component {
 
   deleteBeer = async (e) => {
     e.preventDefault()
-    console.log('other function', this.state.itemToDelete)
     fetch(`http://localhost:3000/beers/${this.state.itemToDelete}`, {
         method: 'DELETE',
         mode: 'cors'
