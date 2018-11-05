@@ -12,7 +12,7 @@ const AddBeer = ({getName, getAbv, getImg, getReview, submitForm}) => {
                 <Form.Input onChange={getAbv} type='number' fluid label='ABV' placeholder='ABV'/>
                 <Form.Input onChange={getReview} fluid label='Review' placeholder='Write a review' />
             </Form.Group>
-            <Button onClick={submitForm} type='submit'>Submit</Button>
+            <Button color='green' onClick={submitForm} type='submit'>Submit</Button>
         </Form>
         </Segment>
     )
