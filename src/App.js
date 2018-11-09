@@ -32,7 +32,7 @@ class App extends Component {
   }
 
   async componentDidMount(){
-    fetch('http://localhost:3000/beers')
+    fetch('https://cryptic-depths-21692.herokuapp.com/beers')
       .then(response => response.json())
       .then(data => {
         this.setState({beer: data.beers})
@@ -50,7 +50,7 @@ class App extends Component {
     if (!data.name || !data.imageUrl || !data.abv || !data.review){
       alert('Please fill out all fields')
     } else {
-    fetch('http://localhost:3000/beers',{
+    fetch('https://cryptic-depths-21692.herokuapp.com/beers',{
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -70,7 +70,7 @@ class App extends Component {
 
   deleteBeer = async (e) => {
     e.preventDefault()
-    fetch(`http://localhost:3000/beers/${this.state.itemToDelete}`, {
+    fetch(`https://cryptic-depths-21692.herokuapp.com/beers/${this.state.itemToDelete}`, {
         method: 'DELETE',
         mode: 'cors'
     })
